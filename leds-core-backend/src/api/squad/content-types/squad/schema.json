@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "squads",
+  "info": {
+    "singularName": "squad",
+    "pluralName": "squads",
+    "displayName": "Squad",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "text"
+    },
+    "membros": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::membro.membro",
+      "inversedBy": "squads"
+    }
+  }
+}

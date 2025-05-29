@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "equipes",
+  "info": {
+    "singularName": "equipe",
+    "pluralName": "equipes",
+    "displayName": "equipe"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "text"
+    },
+    "membros": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::membro.membro",
+      "inversedBy": "equipes"
+    }
+  }
+}

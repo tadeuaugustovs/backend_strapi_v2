@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "plano_de_trabalhos",
+  "info": {
+    "singularName": "plano-de-trabalho",
+    "pluralName": "plano-de-trabalhos",
+    "displayName": "PlanoDeTrabalho",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "observacoes": {
+      "type": "text"
+    },
+    "inicioBolsa": {
+      "type": "date"
+    },
+    "fimBolsa": {
+      "type": "date"
+    },
+    "statusBolsa": {
+      "type": "enumeration",
+      "enum": [
+        "ATIVA",
+        "INATIVA",
+        "PLANEJADA"
+      ]
+    },
+    "motivoInatividade": {
+      "type": "enumeration",
+      "enum": [
+        "CANCELAMENTO",
+        "PRAZO",
+        "PROMOÇÃO"
+      ]
+    },
+    "membro": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::membro.membro",
+      "inversedBy": "planos_de_trabalho"
+    },
+    "projetos": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::projeto.projeto",
+      "inversedBy": "plano_de_trabalhos"
+    },
+    "bolsa": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::bolsa.bolsa"
+    }
+  }
+}

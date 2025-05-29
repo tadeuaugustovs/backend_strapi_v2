@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_financeiro_dados_material_permanentes",
+  "info": {
+    "displayName": "dados-material-permanente",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "item_aquisicao": {
+      "type": "text"
+    },
+    "quantidade": {
+      "type": "integer"
+    },
+    "material_importado": {
+      "type": "boolean"
+    },
+    "localizacao": {
+      "type": "string"
+    }
+  }
+}

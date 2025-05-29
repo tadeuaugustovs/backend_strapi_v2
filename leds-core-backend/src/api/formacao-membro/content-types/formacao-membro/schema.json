@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "formacao_membros",
+  "info": {
+    "singularName": "formacao-membro",
+    "pluralName": "formacao-membros",
+    "displayName": "formacaoMembro"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "valor": {
+      "type": "string"
+    },
+    "membro": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::membro.membro",
+      "inversedBy": "formacao_membros"
+    }
+  }
+}

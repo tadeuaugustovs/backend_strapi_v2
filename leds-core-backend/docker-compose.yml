@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  strapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: strapi-leds-core
+    ports:
+      - "1337:1337"
+    environment:
+      DATABASE_CLIENT: postgres
+      DATABASE_NAME: leds_core              # <-- nome do banco original
+      DATABASE_HOST: host.docker.internal  # <-- acessa o host a partir do Docker
+      DATABASE_PORT: 5433
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: 12345
+      DATABASE_SSL: false
+      NODE_ENV: development
+      APP_KEYS: 4pg7e2o3DfqSZhlOjnlUBw==,FfX1IhOtRRncjOBQuzzVTQ==,JWe+ZJ4NerBB5IacJWSdBQ==,otuggGUkdTdlLkncOniXWw==
+      API_TOKEN_SALT: yFRt1vF6IKK8a/nuAx9PWA==
+      ADMIN_JWT_SECRET: ozsZddHbdq3eCq56cTGpNA==
+      TRANSFER_TOKEN_SALT: qy0dpOIs/wZN+XiIj6IUtQ==
+      ENCRYPTION_KEY: fCaLOQTE58fulOfyobzqfA==
+      JWT_SECRET: F2b7RDWHE4qmwE/07uZ19Q==
+    volumes:
+      - .:/app
+      - /app/node_modules

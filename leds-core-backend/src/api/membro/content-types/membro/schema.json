@@ -1,0 +1,108 @@
+{
+  "kind": "collectionType",
+  "collectionName": "membros",
+  "info": {
+    "singularName": "membro",
+    "pluralName": "membros",
+    "displayName": "membro",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "equipes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::equipe.equipe",
+      "mappedBy": "membros"
+    },
+    "telefone": {
+      "type": "string"
+    },
+    "planos_de_trabalho": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::plano-de-trabalho.plano-de-trabalho",
+      "mappedBy": "membro"
+    },
+    "BairroMunicipio": {
+      "type": "string"
+    },
+    "NumeroAgencia": {
+      "type": "integer"
+    },
+    "CPF": {
+      "type": "integer"
+    },
+    "dataNascimento": {
+      "type": "date"
+    },
+    "equipe_desejadas": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::equipe-desejada.equipe-desejada",
+      "mappedBy": "membros"
+    },
+    "DISC": {
+      "type": "string"
+    },
+    "discAdapt": {
+      "type": "string"
+    },
+    "termoConfidencialidade": {
+      "type": "string"
+    },
+    "formacao": {
+      "type": "string"
+    },
+    "finalizaSuperior": {
+      "type": "string"
+    },
+    "finalizaTecnico": {
+      "type": "string"
+    },
+    "ExperienciaAntesdaFormacao": {
+      "type": "string"
+    },
+    "ExperienciaAposFormacao": {
+      "type": "string"
+    },
+    "tamanhoCamisa": {
+      "type": "string"
+    },
+    "kitLEDS": {
+      "type": "string"
+    },
+    "squads": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::squad.squad",
+      "mappedBy": "membros"
+    },
+    "rede_socials": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::rede-social.rede-social",
+      "mappedBy": "membro"
+    },
+    "formacao_membros": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::formacao-membro.formacao-membro",
+      "mappedBy": "membro"
+    },
+    "outra_infomacoes_membros": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::outra-infomacoes-membro.outra-infomacoes-membro",
+      "mappedBy": "membro"
+    }
+  }
+}

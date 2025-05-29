@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "equipe_desejadas",
+  "info": {
+    "singularName": "equipe-desejada",
+    "pluralName": "equipe-desejadas",
+    "displayName": "EquipeDesejada"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "text"
+    },
+    "membros": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::membro.membro",
+      "inversedBy": "equipe_desejadas"
+    }
+  }
+}

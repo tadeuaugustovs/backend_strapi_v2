@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bolsas",
+  "info": {
+    "singularName": "bolsa",
+    "pluralName": "bolsas",
+    "displayName": "bolsa",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "valor": {
+      "type": "integer"
+    },
+    "nome": {
+      "type": "string"
+    },
+    "financiador": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::financiador.financiador",
+      "inversedBy": "bolsas"
+    }
+  }
+}

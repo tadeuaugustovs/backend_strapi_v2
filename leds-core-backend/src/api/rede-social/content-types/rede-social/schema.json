@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rede_socials",
+  "info": {
+    "singularName": "rede-social",
+    "pluralName": "rede-socials",
+    "displayName": "redeSocialMembro",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nomeRede": {
+      "type": "string"
+    },
+    "usuario": {
+      "type": "string"
+    },
+    "membro": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::membro.membro",
+      "inversedBy": "rede_socials"
+    }
+  }
+}

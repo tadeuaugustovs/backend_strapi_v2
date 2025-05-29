@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projetos",
+  "info": {
+    "singularName": "projeto",
+    "pluralName": "projetos",
+    "displayName": "projeto"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "text"
+    },
+    "plano_de_trabalhos": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::plano-de-trabalho.plano-de-trabalho",
+      "mappedBy": "projetos"
+    },
+    "nota_fiscals": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::nota-fiscal.nota-fiscal",
+      "mappedBy": "projetos"
+    }
+  }
+}

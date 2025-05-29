@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "outra_infomacoes_membros",
+  "info": {
+    "singularName": "outra-infomacoes-membro",
+    "pluralName": "outra-infomacoes-membros",
+    "displayName": "OutraInfomacoesMembro"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "valor": {
+      "type": "string"
+    },
+    "membro": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::membro.membro",
+      "inversedBy": "outra_infomacoes_membros"
+    }
+  }
+}

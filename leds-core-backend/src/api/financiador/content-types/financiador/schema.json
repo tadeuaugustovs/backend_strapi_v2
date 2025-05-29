@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "financiadors",
+  "info": {
+    "singularName": "financiador",
+    "pluralName": "financiadors",
+    "displayName": "Financiador",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "text"
+    },
+    "bolsas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::bolsa.bolsa",
+      "mappedBy": "financiador"
+    }
+  }
+}
