@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "item_fluxo_caixas",
+  "info": {
+    "singularName": "item-fluxo-caixa",
+    "pluralName": "item-fluxo-caixas",
+    "displayName": "ItemFluxoCaixa",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "total": {
+      "type": "decimal"
+    },
+    "gasto": {
+      "type": "decimal"
+    },
+    "restante": {
+      "type": "decimal"
+    },
+    "capital_custeio_item": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::capital-custeio-item.capital-custeio-item",
+      "inversedBy": "item_fluxo_caixas"
+    },
+    "arquivos": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

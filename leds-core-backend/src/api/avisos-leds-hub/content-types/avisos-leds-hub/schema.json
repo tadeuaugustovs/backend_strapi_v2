@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "avisos_leds_hubs",
+  "info": {
+    "singularName": "avisos-leds-hub",
+    "pluralName": "avisos-leds-hubs",
+    "displayName": "AvisosLedsHub",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "conteudo": {
+      "type": "text"
+    },
+    "data": {
+      "type": "date"
+    },
+    "prioridade": {
+      "type": "enumeration",
+      "enum": [
+        "alta",
+        "media",
+        "baixa"
+      ]
+    }
+  }
+}

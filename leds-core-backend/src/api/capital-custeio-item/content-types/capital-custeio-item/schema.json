@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "capital_custeio_items",
+  "info": {
+    "singularName": "capital-custeio-item",
+    "pluralName": "capital-custeio-items",
+    "displayName": "CapitalCusteioItem",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "tipo": {
+      "type": "enumeration",
+      "enum": [
+        "CAPITAL",
+        "CUSTEIO"
+      ]
+    },
+    "item": {
+      "type": "string"
+    },
+    "total": {
+      "type": "decimal"
+    },
+    "gasto": {
+      "type": "decimal"
+    },
+    "restante": {
+      "type": "decimal"
+    },
+    "projetos": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::projeto.projeto",
+      "inversedBy": "capital_custeio_items"
+    },
+    "item_fluxo_caixas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::item-fluxo-caixa.item-fluxo-caixa",
+      "mappedBy": "capital_custeio_item"
+    }
+  }
+}

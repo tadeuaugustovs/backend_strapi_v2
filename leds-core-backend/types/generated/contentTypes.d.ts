@@ -373,6 +373,39 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAvisosLedsHubAvisosLedsHub
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'avisos_leds_hubs';
+  info: {
+    description: '';
+    displayName: 'AvisosLedsHub';
+    pluralName: 'avisos-leds-hubs';
+    singularName: 'avisos-leds-hub';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    conteudo: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    data: Schema.Attribute.Date;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::avisos-leds-hub.avisos-leds-hub'
+    > &
+      Schema.Attribute.Private;
+    prioridade: Schema.Attribute.Enumeration<['alta', 'media', 'baixa']>;
+    publishedAt: Schema.Attribute.DateTime;
+    titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiBolsaBolsa extends Struct.CollectionTypeSchema {
   collectionName: 'bolsas';
   info: {
@@ -401,6 +434,45 @@ export interface ApiBolsaBolsa extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     valor: Schema.Attribute.Integer;
+  };
+}
+
+export interface ApiCapitalCusteioItemCapitalCusteioItem
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'capital_custeio_items';
+  info: {
+    description: '';
+    displayName: 'CapitalCusteioItem';
+    pluralName: 'capital-custeio-items';
+    singularName: 'capital-custeio-item';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    gasto: Schema.Attribute.Decimal;
+    item: Schema.Attribute.String;
+    item_fluxo_caixas: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::item-fluxo-caixa.item-fluxo-caixa'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::capital-custeio-item.capital-custeio-item'
+    > &
+      Schema.Attribute.Private;
+    projetos: Schema.Attribute.Relation<'manyToMany', 'api::projeto.projeto'>;
+    publishedAt: Schema.Attribute.DateTime;
+    restante: Schema.Attribute.Decimal;
+    tipo: Schema.Attribute.Enumeration<['CAPITAL', 'CUSTEIO']>;
+    total: Schema.Attribute.Decimal;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -527,6 +599,47 @@ export interface ApiFormacaoMembroFormacaoMembro
   };
 }
 
+export interface ApiItemFluxoCaixaItemFluxoCaixa
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'item_fluxo_caixas';
+  info: {
+    description: '';
+    displayName: 'ItemFluxoCaixa';
+    pluralName: 'item-fluxo-caixas';
+    singularName: 'item-fluxo-caixa';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    arquivos: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    capital_custeio_item: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::capital-custeio-item.capital-custeio-item'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    gasto: Schema.Attribute.Decimal;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::item-fluxo-caixa.item-fluxo-caixa'
+    > &
+      Schema.Attribute.Private;
+    nome: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    restante: Schema.Attribute.Decimal;
+    total: Schema.Attribute.Decimal;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiMembroMembro extends Struct.CollectionTypeSchema {
   collectionName: 'membros';
   info: {
@@ -539,8 +652,9 @@ export interface ApiMembroMembro extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    acessoLedsHub: Schema.Attribute.Boolean;
     BairroMunicipio: Schema.Attribute.String;
-    CPF: Schema.Attribute.Integer;
+    CPF: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -553,16 +667,11 @@ export interface ApiMembroMembro extends Struct.CollectionTypeSchema {
       'api::equipe-desejada.equipe-desejada'
     >;
     equipes: Schema.Attribute.Relation<'manyToMany', 'api::equipe.equipe'>;
-    ExperienciaAntesdaFormacao: Schema.Attribute.String;
-    ExperienciaAposFormacao: Schema.Attribute.String;
-    finalizaSuperior: Schema.Attribute.String;
-    finalizaTecnico: Schema.Attribute.String;
-    formacao: Schema.Attribute.String;
     formacao_membros: Schema.Attribute.Relation<
       'oneToMany',
       'api::formacao-membro.formacao-membro'
     >;
-    kitLEDS: Schema.Attribute.String;
+    kindLedshub: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -585,83 +694,11 @@ export interface ApiMembroMembro extends Struct.CollectionTypeSchema {
       'api::rede-social.rede-social'
     >;
     squads: Schema.Attribute.Relation<'manyToMany', 'api::squad.squad'>;
-    tamanhoCamisa: Schema.Attribute.String;
     telefone: Schema.Attribute.String;
     termoConfidencialidade: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-  };
-}
-
-export interface ApiNotaFiscalNotaFiscal extends Struct.CollectionTypeSchema {
-  collectionName: 'nota_fiscals';
-  info: {
-    description: '';
-    displayName: 'NotaFiscal';
-    pluralName: 'nota-fiscals';
-    singularName: 'nota-fiscal';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    arquivos: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    dados_hospedagem_alimentacao: Schema.Attribute.Component<
-      'financeiro.hospedagem-alimentacao',
-      false
-    >;
-    dados_material_permanente: Schema.Attribute.Component<
-      'financeiro.dados-material-permanente',
-      false
-    >;
-    dados_passagem: Schema.Attribute.Component<
-      'financeiro.dados-passagem',
-      false
-    >;
-    dados_pessoa_juridica: Schema.Attribute.Component<
-      'financeiro.dados-pessoa-juridica',
-      false
-    >;
-    data_pagamento: Schema.Attribute.Date;
-    forma_pagamento: Schema.Attribute.Enumeration<
-      [
-        'Pix',
-        'Cheque',
-        'Cart\u00E3o Magn\u00E9tico',
-        'DOC',
-        'TED',
-        'Saque',
-        'Contrato de C\u00E2mbio',
-      ]
-    >;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::nota-fiscal.nota-fiscal'
-    > &
-      Schema.Attribute.Private;
-    natureza_despesa: Schema.Attribute.Enumeration<
-      [
-        'Passagem',
-        'Pessoa Jur\u00EDdica',
-        'Hospedagem/Alimenta\u00E7\u00E3o',
-        'Material Permanente',
-      ]
-    >;
-    numero_documento: Schema.Attribute.String;
-    projetos: Schema.Attribute.Relation<'manyToMany', 'api::projeto.projeto'>;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    valor_liquido: Schema.Attribute.Decimal;
   };
 }
 
@@ -748,6 +785,10 @@ export interface ApiProjetoProjeto extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    capital_custeio_items: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::capital-custeio-item.capital-custeio-item'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -759,10 +800,6 @@ export interface ApiProjetoProjeto extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     nome: Schema.Attribute.String;
-    nota_fiscals: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::nota-fiscal.nota-fiscal'
-    >;
     plano_de_trabalhos: Schema.Attribute.Relation<
       'manyToMany',
       'api::plano-de-trabalho.plano-de-trabalho'
@@ -837,6 +874,10 @@ export interface ApiSiteConfigSiteConfig extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     logoAuth: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    outrasMidias: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -899,36 +940,6 @@ export interface ApiUsuarioUsuario extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-  };
-}
-
-export interface ApiValorOrcamentoValorOrcamento
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'valor_orcamentos';
-  info: {
-    displayName: 'valorOrcamento';
-    pluralName: 'valor-orcamentos';
-    singularName: 'valor-orcamento';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::valor-orcamento.valor-orcamento'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    tipo: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    valor: Schema.Attribute.Integer;
   };
 }
 
@@ -1441,13 +1452,15 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::avisos-leds-hub.avisos-leds-hub': ApiAvisosLedsHubAvisosLedsHub;
       'api::bolsa.bolsa': ApiBolsaBolsa;
+      'api::capital-custeio-item.capital-custeio-item': ApiCapitalCusteioItemCapitalCusteioItem;
       'api::equipe-desejada.equipe-desejada': ApiEquipeDesejadaEquipeDesejada;
       'api::equipe.equipe': ApiEquipeEquipe;
       'api::financiador.financiador': ApiFinanciadorFinanciador;
       'api::formacao-membro.formacao-membro': ApiFormacaoMembroFormacaoMembro;
+      'api::item-fluxo-caixa.item-fluxo-caixa': ApiItemFluxoCaixaItemFluxoCaixa;
       'api::membro.membro': ApiMembroMembro;
-      'api::nota-fiscal.nota-fiscal': ApiNotaFiscalNotaFiscal;
       'api::outra-infomacoes-membro.outra-infomacoes-membro': ApiOutraInfomacoesMembroOutraInfomacoesMembro;
       'api::plano-de-trabalho.plano-de-trabalho': ApiPlanoDeTrabalhoPlanoDeTrabalho;
       'api::projeto.projeto': ApiProjetoProjeto;
@@ -1455,7 +1468,6 @@ declare module '@strapi/strapi' {
       'api::site-config.site-config': ApiSiteConfigSiteConfig;
       'api::squad.squad': ApiSquadSquad;
       'api::usuario.usuario': ApiUsuarioUsuario;
-      'api::valor-orcamento.valor-orcamento': ApiValorOrcamentoValorOrcamento;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

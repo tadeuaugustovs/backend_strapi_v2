@@ -22,10 +22,10 @@
       "target": "api::plano-de-trabalho.plano-de-trabalho",
       "mappedBy": "projetos"
     },
-    "nota_fiscals": {
+    "capital_custeio_items": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::nota-fiscal.nota-fiscal",
+      "target": "api::capital-custeio-item.capital-custeio-item",
       "mappedBy": "projetos"
     }
   }

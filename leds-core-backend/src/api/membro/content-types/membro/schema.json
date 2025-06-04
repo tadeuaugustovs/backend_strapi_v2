@@ -38,9 +38,6 @@
     "NumeroAgencia": {
       "type": "integer"
     },
-    "CPF": {
-      "type": "integer"
-    },
     "dataNascimento": {
       "type": "date"
     },
@@ -57,27 +54,6 @@
       "type": "string"
     },
     "termoConfidencialidade": {
-      "type": "string"
-    },
-    "formacao": {
-      "type": "string"
-    },
-    "finalizaSuperior": {
-      "type": "string"
-    },
-    "finalizaTecnico": {
-      "type": "string"
-    },
-    "ExperienciaAntesdaFormacao": {
-      "type": "string"
-    },
-    "ExperienciaAposFormacao": {
-      "type": "string"
-    },
-    "tamanhoCamisa": {
-      "type": "string"
-    },
-    "kitLEDS": {
       "type": "string"
     },
     "squads": {
@@ -103,6 +79,15 @@
       "relation": "oneToMany",
       "target": "api::outra-infomacoes-membro.outra-infomacoes-membro",
       "mappedBy": "membro"
+    },
+    "CPF": {
+      "type": "string"
+    },
+    "kindLedshub": {
+      "type": "string"
+    },
+    "acessoLedsHub": {
+      "type": "boolean"
     }
   }
 }
