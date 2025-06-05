@@ -20,9 +20,6 @@
     "despesa": {
       "type": "decimal"
     },
-    "restante": {
-      "type": "decimal"
-    },
     "capital_custeio_item": {
       "type": "relation",
       "relation": "manyToOne",
@@ -45,6 +42,9 @@
     },
     "contacorrente": {
       "type": "decimal"
+    },
+    "situacao": {
+      "type": "string"
     }
   }
 }

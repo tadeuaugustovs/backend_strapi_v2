@@ -640,7 +640,7 @@ export interface ApiItemFluxoCaixaItemFluxoCaixa
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     receita: Schema.Attribute.Decimal;
-    restante: Schema.Attribute.Decimal;
+    situacao: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
