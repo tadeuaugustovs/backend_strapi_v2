@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "membros_leds_hubs",
+  "info": {
+    "singularName": "membros-leds-hub",
+    "pluralName": "membros-leds-hubs",
+    "displayName": "membrosLedsHub"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "membro": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::membro.membro",
+      "inversedBy": "membros_leds_hub"
+    },
+    "kindLedshub": {
+      "type": "string"
+    },
+    "acessoLedsHub": {
+      "type": "boolean"
+    }
+  }
+}

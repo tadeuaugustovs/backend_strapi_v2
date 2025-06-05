@@ -18,13 +18,13 @@
         "CUSTEIO"
       ]
     },
-    "item": {
+    "descricao": {
       "type": "string"
     },
-    "total": {
+    "receita": {
       "type": "decimal"
     },
-    "gasto": {
+    "despesa": {
       "type": "decimal"
     },
     "restante": {
@@ -41,6 +41,21 @@
       "relation": "oneToMany",
       "target": "api::item-fluxo-caixa.item-fluxo-caixa",
       "mappedBy": "capital_custeio_item"
+    },
+    "taxa": {
+      "type": "decimal"
+    },
+    "rendimento": {
+      "type": "decimal"
+    },
+    "contacorrente": {
+      "type": "decimal"
+    },
+    "situacao": {
+      "type": "string"
+    },
+    "data": {
+      "type": "date"
     }
   }
 }

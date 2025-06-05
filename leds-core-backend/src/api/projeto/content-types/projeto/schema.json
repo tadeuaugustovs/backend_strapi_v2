@@ -4,7 +4,8 @@
   "info": {
     "singularName": "projeto",
     "pluralName": "projetos",
-    "displayName": "projeto"
+    "displayName": "projeto",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -27,6 +28,12 @@
       "relation": "manyToMany",
       "target": "api::capital-custeio-item.capital-custeio-item",
       "mappedBy": "projetos"
+    },
+    "membros": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::membro.membro",
+      "inversedBy": "projetos"
     }
   }
 }

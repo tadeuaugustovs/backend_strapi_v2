@@ -22,6 +22,9 @@
       "relation": "manyToOne",
       "target": "api::membro.membro",
       "inversedBy": "rede_socials"
+    },
+    "linkAcesso": {
+      "type": "string"
     }
   }
 }

@@ -83,11 +83,17 @@
     "CPF": {
       "type": "string"
     },
-    "kindLedshub": {
-      "type": "string"
+    "projetos": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::projeto.projeto",
+      "mappedBy": "membros"
     },
-    "acessoLedsHub": {
-      "type": "boolean"
+    "membros_leds_hub": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::membros-leds-hub.membros-leds-hub",
+      "mappedBy": "membro"
     }
   }
 }

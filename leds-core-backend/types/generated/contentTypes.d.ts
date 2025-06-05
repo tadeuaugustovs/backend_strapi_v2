@@ -450,11 +450,13 @@ export interface ApiCapitalCusteioItemCapitalCusteioItem
     draftAndPublish: true;
   };
   attributes: {
+    contacorrente: Schema.Attribute.Decimal;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    gasto: Schema.Attribute.Decimal;
-    item: Schema.Attribute.String;
+    data: Schema.Attribute.Date;
+    descricao: Schema.Attribute.String;
+    despesa: Schema.Attribute.Decimal;
     item_fluxo_caixas: Schema.Attribute.Relation<
       'oneToMany',
       'api::item-fluxo-caixa.item-fluxo-caixa'
@@ -467,9 +469,12 @@ export interface ApiCapitalCusteioItemCapitalCusteioItem
       Schema.Attribute.Private;
     projetos: Schema.Attribute.Relation<'manyToMany', 'api::projeto.projeto'>;
     publishedAt: Schema.Attribute.DateTime;
+    receita: Schema.Attribute.Decimal;
+    rendimento: Schema.Attribute.Decimal;
     restante: Schema.Attribute.Decimal;
+    situacao: Schema.Attribute.String;
+    taxa: Schema.Attribute.Decimal;
     tipo: Schema.Attribute.Enumeration<['CAPITAL', 'CUSTEIO']>;
-    total: Schema.Attribute.Decimal;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -620,20 +625,22 @@ export interface ApiItemFluxoCaixaItemFluxoCaixa
       'manyToOne',
       'api::capital-custeio-item.capital-custeio-item'
     >;
+    contacorrente: Schema.Attribute.Decimal;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    gasto: Schema.Attribute.Decimal;
+    data: Schema.Attribute.Date;
+    descricao: Schema.Attribute.String;
+    despesa: Schema.Attribute.Decimal;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::item-fluxo-caixa.item-fluxo-caixa'
     > &
       Schema.Attribute.Private;
-    nome: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    receita: Schema.Attribute.Decimal;
     restante: Schema.Attribute.Decimal;
-    total: Schema.Attribute.Decimal;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -652,7 +659,6 @@ export interface ApiMembroMembro extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    acessoLedsHub: Schema.Attribute.Boolean;
     BairroMunicipio: Schema.Attribute.String;
     CPF: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
@@ -671,13 +677,16 @@ export interface ApiMembroMembro extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::formacao-membro.formacao-membro'
     >;
-    kindLedshub: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::membro.membro'
     > &
       Schema.Attribute.Private;
+    membros_leds_hub: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::membros-leds-hub.membros-leds-hub'
+    >;
     nome: Schema.Attribute.String;
     NumeroAgencia: Schema.Attribute.Integer;
     outra_infomacoes_membros: Schema.Attribute.Relation<
@@ -688,6 +697,7 @@ export interface ApiMembroMembro extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::plano-de-trabalho.plano-de-trabalho'
     >;
+    projetos: Schema.Attribute.Relation<'manyToMany', 'api::projeto.projeto'>;
     publishedAt: Schema.Attribute.DateTime;
     rede_socials: Schema.Attribute.Relation<
       'oneToMany',
@@ -696,6 +706,37 @@ export interface ApiMembroMembro extends Struct.CollectionTypeSchema {
     squads: Schema.Attribute.Relation<'manyToMany', 'api::squad.squad'>;
     telefone: Schema.Attribute.String;
     termoConfidencialidade: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMembrosLedsHubMembrosLedsHub
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'membros_leds_hubs';
+  info: {
+    displayName: 'membrosLedsHub';
+    pluralName: 'membros-leds-hubs';
+    singularName: 'membros-leds-hub';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    acessoLedsHub: Schema.Attribute.Boolean;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    kindLedshub: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::membros-leds-hub.membros-leds-hub'
+    > &
+      Schema.Attribute.Private;
+    membro: Schema.Attribute.Relation<'oneToOne', 'api::membro.membro'>;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -777,6 +818,7 @@ export interface ApiPlanoDeTrabalhoPlanoDeTrabalho
 export interface ApiProjetoProjeto extends Struct.CollectionTypeSchema {
   collectionName: 'projetos';
   info: {
+    description: '';
     displayName: 'projeto';
     pluralName: 'projetos';
     singularName: 'projeto';
@@ -799,6 +841,7 @@ export interface ApiProjetoProjeto extends Struct.CollectionTypeSchema {
       'api::projeto.projeto'
     > &
       Schema.Attribute.Private;
+    membros: Schema.Attribute.Relation<'manyToMany', 'api::membro.membro'>;
     nome: Schema.Attribute.String;
     plano_de_trabalhos: Schema.Attribute.Relation<
       'manyToMany',
@@ -826,6 +869,7 @@ export interface ApiRedeSocialRedeSocial extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    linkAcesso: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1461,6 +1505,7 @@ declare module '@strapi/strapi' {
       'api::formacao-membro.formacao-membro': ApiFormacaoMembroFormacaoMembro;
       'api::item-fluxo-caixa.item-fluxo-caixa': ApiItemFluxoCaixaItemFluxoCaixa;
       'api::membro.membro': ApiMembroMembro;
+      'api::membros-leds-hub.membros-leds-hub': ApiMembrosLedsHubMembrosLedsHub;
       'api::outra-infomacoes-membro.outra-infomacoes-membro': ApiOutraInfomacoesMembroOutraInfomacoesMembro;
       'api::plano-de-trabalho.plano-de-trabalho': ApiPlanoDeTrabalhoPlanoDeTrabalho;
       'api::projeto.projeto': ApiProjetoProjeto;
