@@ -13,7 +13,7 @@ export default (config: UserConfig) => {
     server: {
       host: '0.0.0.0', // Mantém o servidor acessível na rede
       allowedHosts: [
-        'strapi.core.leds.dev.br', 
+        'strapi.conectafapes.leds.dev.br', 
 
       ],
     },
