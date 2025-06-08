@@ -22,6 +22,12 @@
       "relation": "oneToMany",
       "target": "api::bolsa.bolsa",
       "mappedBy": "financiador"
+    },
+    "plano_de_trabalhos": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::plano-de-trabalho.plano-de-trabalho",
+      "mappedBy": "financiadors"
     }
   }
 }

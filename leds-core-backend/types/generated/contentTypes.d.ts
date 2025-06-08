@@ -566,6 +566,10 @@ export interface ApiFinanciadorFinanciador extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     nome: Schema.Attribute.String;
+    plano_de_trabalhos: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::plano-de-trabalho.plano-de-trabalho'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -792,6 +796,10 @@ export interface ApiPlanoDeTrabalhoPlanoDeTrabalho
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     fimBolsa: Schema.Attribute.Date;
+    financiadors: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::financiador.financiador'
+    >;
     inicioBolsa: Schema.Attribute.Date;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<

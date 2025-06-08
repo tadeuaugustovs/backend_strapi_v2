@@ -52,6 +52,12 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::bolsa.bolsa"
+    },
+    "financiadors": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::financiador.financiador",
+      "inversedBy": "plano_de_trabalhos"
     }
   }
 }
