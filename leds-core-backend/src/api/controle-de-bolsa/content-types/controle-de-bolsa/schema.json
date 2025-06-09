@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "controle_de_bolsas",
+  "info": {
+    "singularName": "controle-de-bolsa",
+    "pluralName": "controle-de-bolsas",
+    "displayName": "ControleDeBolsa"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "valor_total": {
+      "type": "decimal"
+    },
+    "valor_planejado": {
+      "type": "decimal"
+    },
+    "projeto": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::projeto.projeto",
+      "inversedBy": "controle_de_bolsa"
+    }
+  }
+}

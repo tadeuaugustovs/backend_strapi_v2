@@ -34,6 +34,12 @@
       "relation": "manyToMany",
       "target": "api::membro.membro",
       "inversedBy": "projetos"
+    },
+    "controle_de_bolsa": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::controle-de-bolsa.controle-de-bolsa",
+      "mappedBy": "projeto"
     }
   }
 }

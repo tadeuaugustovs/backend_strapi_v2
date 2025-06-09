@@ -481,6 +481,37 @@ export interface ApiCapitalCusteioItemCapitalCusteioItem
   };
 }
 
+export interface ApiControleDeBolsaControleDeBolsa
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'controle_de_bolsas';
+  info: {
+    displayName: 'ControleDeBolsa';
+    pluralName: 'controle-de-bolsas';
+    singularName: 'controle-de-bolsa';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::controle-de-bolsa.controle-de-bolsa'
+    > &
+      Schema.Attribute.Private;
+    projeto: Schema.Attribute.Relation<'oneToOne', 'api::projeto.projeto'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    valor_planejado: Schema.Attribute.Decimal;
+    valor_total: Schema.Attribute.Decimal;
+  };
+}
+
 export interface ApiEquipeDesejadaEquipeDesejada
   extends Struct.CollectionTypeSchema {
   collectionName: 'equipe_desejadas';
@@ -839,6 +870,10 @@ export interface ApiProjetoProjeto extends Struct.CollectionTypeSchema {
       'manyToMany',
       'api::capital-custeio-item.capital-custeio-item'
     >;
+    controle_de_bolsa: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::controle-de-bolsa.controle-de-bolsa'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -992,6 +1027,35 @@ export interface ApiUsuarioUsuario extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiValorGeralValorGeral extends Struct.CollectionTypeSchema {
+  collectionName: 'valor_gerals';
+  info: {
+    displayName: 'valorGeral';
+    pluralName: 'valor-gerals';
+    singularName: 'valor-geral';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::valor-geral.valor-geral'
+    > &
+      Schema.Attribute.Private;
+    observacao: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    valor_total: Schema.Attribute.Decimal;
   };
 }
 
@@ -1507,6 +1571,7 @@ declare module '@strapi/strapi' {
       'api::avisos-leds-hub.avisos-leds-hub': ApiAvisosLedsHubAvisosLedsHub;
       'api::bolsa.bolsa': ApiBolsaBolsa;
       'api::capital-custeio-item.capital-custeio-item': ApiCapitalCusteioItemCapitalCusteioItem;
+      'api::controle-de-bolsa.controle-de-bolsa': ApiControleDeBolsaControleDeBolsa;
       'api::equipe-desejada.equipe-desejada': ApiEquipeDesejadaEquipeDesejada;
       'api::equipe.equipe': ApiEquipeEquipe;
       'api::financiador.financiador': ApiFinanciadorFinanciador;
@@ -1521,6 +1586,7 @@ declare module '@strapi/strapi' {
       'api::site-config.site-config': ApiSiteConfigSiteConfig;
       'api::squad.squad': ApiSquadSquad;
       'api::usuario.usuario': ApiUsuarioUsuario;
+      'api::valor-geral.valor-geral': ApiValorGeralValorGeral;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

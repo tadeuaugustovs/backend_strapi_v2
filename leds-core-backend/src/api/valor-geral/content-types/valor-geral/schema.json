@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "valor_gerals",
+  "info": {
+    "singularName": "valor-geral",
+    "pluralName": "valor-gerals",
+    "displayName": "valorGeral"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "valor_total": {
+      "type": "decimal"
+    },
+    "observacao": {
+      "type": "string"
+    }
+  }
+}
